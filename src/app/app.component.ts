@@ -1,6 +1,9 @@
 import { Weather } from './shared/weather.model';
 import { WeatherService } from './weather.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
+import { Observer } from 'rxjs/Observer';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +16,22 @@ export class AppComponent implements OnInit {
 
     constructor(private weatherService: WeatherService) { }
 
+
     ngOnInit() {
-      this.weathers = this.weatherService.getWeathers();
+      this.weatherService.addWeathers();
+      this.weatherService.getWeathers();
+      const weathersChange = Observable.create((observer: Observer<Weather[]>) => {
+        setInterval(() => observer.next(this.weatherService.getWeathers()), 2000);
+      });
+      weathersChange.subscribe(
+        (data: Weather[]) => { this.weathers = data }
+      );
     }
+
+    test() {
+      console.log(this.weatherService.addWeathers());
+  }
+
+
 
 }
