@@ -1,0 +1,15 @@
+<a target="_blank" [href]="link" (click)="onWidgetClick()">
+    <span class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 weather-box" *ngIf="index < 3">
+        <h2>{{ weather.city }}</h2>
+        <h3>{{ weather.temperature | celsius }} - {{ weather.description }}</h3>
+
+        <p [ngSwitch]="weather.description">
+            <i *ngSwitchCase="'Showers'" class="fa fa-tint" aria-hidden="true"></i>
+            <i *ngSwitchCase="'Sunny'" class="fa fa-sun-o" aria-hidden="true"></i>
+            <i *ngSwitchCase="'Cloudy'" class="fa fa-cloud" aria-hidden="true"></i>
+            <i *ngSwitchCase="'Partly Cloudy'" class="fa fa-cloud" aria-hidden="true"></i>
+            <i *ngSwitchCase="'Snow'" class="fa fa-snowflake-o" aria-hidden="true"></i>
+            <i *ngSwitchDefault class="fa fa-check" aria-hidden="true"></i>
+        </p>
+    </span>
+</a>

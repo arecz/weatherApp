@@ -1,0 +1,11 @@
+.weather-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    border: 1px solid #AAA;
+    margin-bottom: 20px;
+    color: royalblue;
+}
+
+.fa {
+    font-size: 3rem;
+}
