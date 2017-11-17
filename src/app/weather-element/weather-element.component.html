@@ -5,9 +5,11 @@
 
         <p [ngSwitch]="weather.description">
             <i *ngSwitchCase="'Showers'" class="fa fa-tint" aria-hidden="true"></i>
+            <i *ngSwitchCase="'Rain'" class="fa fa-tint" aria-hidden="true"></i>
             <i *ngSwitchCase="'Sunny'" class="fa fa-sun-o" aria-hidden="true"></i>
             <i *ngSwitchCase="'Cloudy'" class="fa fa-cloud" aria-hidden="true"></i>
             <i *ngSwitchCase="'Partly Cloudy'" class="fa fa-cloud" aria-hidden="true"></i>
+            <i *ngSwitchCase="'Mostly Cloudy'" class="fa fa-cloud" aria-hidden="true"></i>
             <i *ngSwitchCase="'Snow'" class="fa fa-snowflake-o" aria-hidden="true"></i>
             <i *ngSwitchDefault class="fa fa-check" aria-hidden="true"></i>
         </p>
