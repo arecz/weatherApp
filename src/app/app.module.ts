@@ -5,11 +5,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { WeatherElementComponent } from './weather-element/weather-element.component';
+import { CelsiusPipe } from './weather-element/celsius.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherElementComponent
+    WeatherElementComponent,
+    CelsiusPipe
   ],
   imports: [
     BrowserModule,

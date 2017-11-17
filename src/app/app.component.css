@@ -1,0 +1,11 @@
+    .container {
+        margin-top: 10vh;
+    }
+    
+    h1 {
+        margin-top: 5vh;
+        font-size: 8rem;
+        font-family: 'Pacifico';
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.8);
+    }
