@@ -3,13 +3,14 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
-        "start": "node server.js",
+        "start": "http-server dist/",
         "ng": "ng",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "postinstall": "ng build --aot -prod"
+        "heroku-prebuild": "npm install -g http-server",
+        "heroku-postbuild": "ng build --prod",
     },
     "private": true,
     "dependencies": {
