@@ -10,18 +10,24 @@ export class WeatherService {
 
     constructor(private http: Http) {}
 
-    private weathers: Weather[] = [];
+    private weathers: Weather[] = [
+        {city: 'Loading', temperature: 'Loading', description: 'Loading'},
+        {city: 'Loading', temperature: 'Loading', description: 'Loading'},
+        {city: 'Loading', temperature: 'Loading', description: 'Loading'}
+    ];
 
     getWeathers() {
             const array = [...this.weathers];
             const shuffledArray = this.shuffle(array);
-            console.log(shuffledArray);
             return shuffledArray;
     }
 
     addWeathers() {
+        this.weathers = [];
+        const woeidArr: number[] = [523920, 2459115, 638242, 505120, 44418];
         let array = this.weathers.slice();
-        this.http.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D523920&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
+        for (let i = 0; i < woeidArr.length; i++) {
+        this.http.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D' + woeidArr[i] + '&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
         .subscribe(
             (response: Response) => {
                 let data = response.json();
@@ -31,46 +37,7 @@ export class WeatherService {
                 return array.push(new Weather(city, temp, text));
             }
         );
-        this.http.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D2459115&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
-        .subscribe(
-            (response: Response) => {
-                let data = response.json();
-                let city = data.query.results.channel.location.city;
-                let temp = data.query.results.channel.item.condition.temp;
-                let text = data.query.results.channel.item.condition.text;
-                return array.push(new Weather(city, temp, text));
-            }
-        );
-        this.http.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D638242&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
-        .subscribe(
-            (response: Response) => {
-                let data = response.json();
-                let city = data.query.results.channel.location.city;
-                let temp = data.query.results.channel.item.condition.temp;
-                let text = data.query.results.channel.item.condition.text;
-                return array.push(new Weather(city, temp, text));
-            }
-        );
-        this.http.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D505120&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
-        .subscribe(
-            (response: Response) => {
-                let data = response.json();
-                let city = data.query.results.channel.location.city;
-                let temp = data.query.results.channel.item.condition.temp;
-                let text = data.query.results.channel.item.condition.text;
-                return array.push(new Weather(city, temp, text));
-            }
-        );
-        this.http.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D44418&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
-        .subscribe(
-            (response: Response) => {
-                let data = response.json();
-                let city = data.query.results.channel.location.city;
-                let temp = data.query.results.channel.item.condition.temp;
-                let text = data.query.results.channel.item.condition.text;
-                return array.push(new Weather(city, temp, text));
-            }
-        );
+    }
         return this.weathers = array;
     }
 
@@ -89,6 +56,7 @@ export class WeatherService {
             array[counter] = array[index];
             array[index] = temp;
         }
+        console.log(array);
         return array;
     }
 }

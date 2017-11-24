@@ -17,11 +17,12 @@ export class AppComponent implements OnInit {
     constructor(private weatherService: WeatherService) { }
 
     ngOnInit() {
-      this.weatherService.addWeathers();
+
+      this.weathers = this.weatherService.getWeathers();
 
       const citiesChange = Observable.create((observer: Observer<Weather[]>) => {
-        setTimeout(() => observer.next(this.weatherService.getWeathers()), 1500);
-        setInterval(() => observer.next(this.weatherService.getWeathers()), 10000);
+        setTimeout(() => observer.next(this.weatherService.addWeathers()), 2000);
+        setInterval(() => observer.next(this.weatherService.getWeathers()), 5000);
       });
       citiesChange.subscribe(
         (data: Weather[]) => { this.weathers = data; }
