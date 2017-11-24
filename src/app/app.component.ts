@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
       const citiesChange = Observable.create((observer: Observer<Weather[]>) => {
         setTimeout(() => observer.next(this.weatherService.addWeathers()), 2000);
-        setInterval(() => observer.next(this.weatherService.getWeathers()), 5000);
+        setInterval(() => observer.next(this.weatherService.getWeathers()), 30000);
       });
       citiesChange.subscribe(
         (data: Weather[]) => { this.weathers = data; }

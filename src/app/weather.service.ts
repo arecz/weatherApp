@@ -46,7 +46,7 @@ export class WeatherService {
 
     }
 
-    shuffle(array) {
+    private shuffle(array) {
         let counter = array.length;
         while (counter > 0) {
             let index = Math.floor(Math.random() * counter);
