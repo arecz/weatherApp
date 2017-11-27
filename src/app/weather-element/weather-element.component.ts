@@ -11,7 +11,7 @@ export class WeatherElementComponent implements OnInit {
 
   @Input() index: number;
   weather: Weather;
-  link: string = '';
+  link = '';
 
   constructor(private weatherService: WeatherService) { }
 

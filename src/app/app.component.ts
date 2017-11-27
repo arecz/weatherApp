@@ -10,6 +10,7 @@ import { Observer } from 'rxjs/Observer';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
 
   weathers: Weather[];
@@ -17,15 +18,8 @@ export class AppComponent implements OnInit {
     constructor(private weatherService: WeatherService) { }
 
     ngOnInit() {
-
-      this.weathers = this.weatherService.getWeathers();
-
-      const citiesChange = Observable.create((observer: Observer<Weather[]>) => {
-        setTimeout(() => observer.next(this.weatherService.addWeathers()), 2000);
-        setInterval(() => observer.next(this.weatherService.getWeathers()), 30000);
+        this.weatherService.subscribeWeathers().subscribe((data) => {
+          this.weathers = data;
       });
-      citiesChange.subscribe(
-        (data: Weather[]) => { this.weathers = data; }
-      );
-    }
+   }
 }
