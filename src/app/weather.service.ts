@@ -17,7 +17,7 @@ export class WeatherService {
         const linkStart = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D';
         const linkEnd = '%20and%20u%3D' + "'c'" + '&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
 
-        return Observable.interval(60000).startWith(0).switchMap(() => Observable.forkJoin([
+        return Observable.interval(10000).startWith(0).switchMap(() => Observable.forkJoin([
             this.http.get(linkStart + this.woeidArr[0] + linkEnd).map(
                 (response: Response) => this.responseCallback(response)
             ),
